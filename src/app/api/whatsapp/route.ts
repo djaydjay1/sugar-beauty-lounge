@@ -57,13 +57,13 @@ export async function POST(req: NextRequest) {
       model: "claude-haiku-4-5-20251001",
       max_tokens: 500,
       system: systemPrompt,
-      messages: messages.map(m => ({ role: m.role, content: m.content })),
+      messages: messages.map(m => ({ role: m.role as "user" | "assistant", content: m.content })),
     });
 
     const reply = (response.content[0] as { type: string; text: string }).text;
 
     // Add assistant reply to history (keep last 20 messages)
-    const updatedMessages: Message[] = [...messages, { role: "assistant", content: reply }].slice(-20);
+    const updatedMessages: Message[] = ([...messages, { role: "assistant" as const, content: reply }] as Message[]).slice(-20);
 
     // Upsert conversation
     await supabase.from("whatsapp_conversations").upsert({

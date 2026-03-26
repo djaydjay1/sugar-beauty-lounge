@@ -75,7 +75,20 @@ export interface Database {
           last_visit_at: string | null;
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["clients"]["Row"], "id" | "created_at">;
+        Insert: {
+          name: string;
+          phone?: string | null;
+          whatsapp?: string | null;
+          email?: string | null;
+          nationality?: string | null;
+          language_preference?: "en" | "ar";
+          notes?: string | null;
+          referral_source?: string | null;
+          loyalty_points?: number;
+          total_spent?: number;
+          visit_count?: number;
+          last_visit_at?: string | null;
+        };
         Update: Partial<Database["public"]["Tables"]["clients"]["Insert"]>;
       };
       client_preferences: {
@@ -167,7 +180,20 @@ export interface Database {
           review_requested: boolean;
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["appointments"]["Row"], "id" | "created_at">;
+        Insert: {
+          client_id: string;
+          staff_id: string;
+          service_id: string;
+          location_id: string;
+          date: string;
+          start_time: string;
+          end_time: string;
+          status?: AppointmentStatus;
+          source?: BookingSource;
+          notes?: string | null;
+          reminder_sent?: boolean;
+          review_requested?: boolean;
+        };
         Update: Partial<Database["public"]["Tables"]["appointments"]["Insert"]>;
       };
 
@@ -235,7 +261,17 @@ export interface Database {
           location_id: string | null;
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["inventory_items"]["Row"], "id" | "created_at">;
+        Insert: {
+          name: string;
+          category: string;
+          brand?: string | null;
+          unit?: string;
+          current_stock?: number;
+          reorder_level?: number;
+          cost_per_unit?: number;
+          supplier?: string | null;
+          location_id?: string | null;
+        };
         Update: Partial<Database["public"]["Tables"]["inventory_items"]["Insert"]>;
       };
       inventory_transactions: {
@@ -248,7 +284,13 @@ export interface Database {
           staff_id: string | null;
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["inventory_transactions"]["Row"], "id" | "created_at">;
+        Insert: {
+          item_id: string;
+          type: "in" | "out" | "adjustment";
+          quantity: number;
+          notes?: string | null;
+          staff_id?: string | null;
+        };
         Update: Partial<Database["public"]["Tables"]["inventory_transactions"]["Insert"]>;
       };
 
@@ -328,9 +370,19 @@ export interface Database {
           status: "active" | "resolved" | "escalated";
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["whatsapp_conversations"]["Row"], "id" | "created_at">;
+        Insert: {
+          phone: string;
+          client_id?: string | null;
+          messages?: Json;
+          last_message_at?: string;
+          status?: "active" | "resolved" | "escalated";
+        };
         Update: Partial<Database["public"]["Tables"]["whatsapp_conversations"]["Insert"]>;
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }

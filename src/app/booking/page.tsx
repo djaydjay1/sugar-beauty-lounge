@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Check, Clock, MapPin, User, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, Clock, MapPin, User, Calendar, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { Database } from "@/types/database";
@@ -32,7 +32,7 @@ const TIMES = ["09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","
 
 const STEP_LABELS = ["Service", "Date & Time", "Your Details", "Confirm"];
 
-export default function BookingPage() {
+function BookingPageInner() {
   const params = useSearchParams();
   const [step, setStep] = useState<Step>(1);
   const [services, setServices] = useState<Service[]>([]);
@@ -444,5 +444,13 @@ export default function BookingPage() {
         </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "var(--color-bg)" }}><p style={{ color: "var(--color-text-muted)" }}>Loading...</p></div>}>
+      <BookingPageInner />
+    </Suspense>
   );
 }

@@ -42,7 +42,7 @@ export default function HRPage() {
   useEffect(() => { load(); }, []);
 
   async function updateLeave(id: string, status: string) {
-    await supabase.from("leave_requests").update({ status }).eq("id", id);
+    await supabase.from("leave_requests").update({ status: status as import("@/types/database").LeaveStatus }).eq("id", id);
     load();
   }
 

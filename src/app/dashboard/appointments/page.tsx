@@ -45,7 +45,7 @@ export default function AppointmentsPage() {
   useEffect(() => { load(); }, [load]);
 
   async function updateStatus(id: string, newStatus: string) {
-    await supabase.from("appointments").update({ status: newStatus }).eq("id", id);
+    await supabase.from("appointments").update({ status: newStatus as import("@/types/database").AppointmentStatus }).eq("id", id);
     load();
   }
 
