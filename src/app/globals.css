@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Sugar Beauty Lounge — Blush & Gold palette */
+  --color-bg:          #FAF7F5;
+  --color-surface:     #F3EDE9;
+  --color-card:        #FFFFFF;
+  --color-border:      #E8DDD8;
+
+  --color-text:        #1C1917;
+  --color-text-muted:  #78716C;
+  --color-text-soft:   #A8A29E;
+
+  --color-gold:        #C9A84C;
+  --color-gold-dark:   #A37C2E;
+  --color-gold-light:  #E4C97A;
+
+  --color-blush:       #E8B4B8;
+  --color-blush-dark:  #C4848A;
+  --color-blush-light: #F5D6D9;
+
+  --color-plum:        #6B3D5E;
+  --color-plum-dark:   #4E2B45;
+  --color-plum-light:  #9B6A8A;
+
+  --font-display: "Cormorant Garamond", "Georgia", serif;
+  --font-body:    "DM Sans", "Inter", sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-gold     { color: var(--color-gold); }
+  .text-blush    { color: var(--color-blush); }
+  .text-plum     { color: var(--color-plum); }
+  .bg-card       { background-color: var(--color-card); }
+  .bg-surface    { background-color: var(--color-surface); }
+  .border-custom { border-color: var(--color-border); }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
+  }
+  .plum-gradient {
+    background: linear-gradient(135deg, var(--color-plum-light), var(--color-plum), var(--color-plum-dark));
+  }
+  .blush-gradient {
+    background: linear-gradient(135deg, var(--color-blush-light), var(--color-blush), var(--color-blush-dark));
+  }
+}
