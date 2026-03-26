@@ -77,23 +77,17 @@ npm run dev    # http://localhost:3000
 npm run build
 ```
 
-## What's Built
+## Deployment
 
-- [x] Marketing website (hero, services, locations, reviews, CTA)
-- [x] 4-step online booking flow (service → datetime + staff → contact → confirm)
-- [x] Owner dashboard with 8 modules
-- [x] Full Supabase schema (20 tables)
-- [x] WhatsApp AI receptionist (Claude Haiku + Twilio)
-- [x] Chat API (streaming, edge runtime)
+- **URL:** https://sugar.ordanalabs.com (live on Coolify, `65.20.69.31`)
+- **Coolify app UUID:** `e6yx5bwcfezbv5txe541czpi`
+- **GitHub repo:** `git@github.com:djaydjay1/sugar-beauty-lounge.git` (public)
+- **Supabase:** Placeholder URL active — needs real project before DB calls work
 
 ## What's Next
 
-- [ ] Seed services + staff from owner (get real data)
-- [ ] Create Supabase project + run migration
-- [ ] Set env vars + deploy to Coolify
-- [ ] Add Stripe payment links to invoices
-- [ ] Build invoice PDF generation
+- [ ] Create Supabase project + run `supabase/migrations/001_initial_schema.sql`
+- [ ] Update Coolify env vars (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY) → redeploy
+- [ ] Get real services/pricing + staff from owner, seed the DB
+- [ ] Activate WhatsApp when Twilio upgraded
 - [ ] Add availability calendar (block booked slots in booking flow)
-- [ ] Implement loyalty points logic (earn on visit, redeem on booking)
-- [ ] WhatsApp: activate when Twilio upgraded
-- [ ] Domain: sugarbeautylounge.com (or subdomain)
